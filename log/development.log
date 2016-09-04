@@ -1,0 +1,1427 @@
+  [1m[35m (37.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (19.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7232867470950438660);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePosts (20160903173617)
+  [1m[35m (5.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (30.2ms)[0m  [1m[35mCREATE TABLE "posts" ("id" serial primary key, "title" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (23.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20160903173617"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-09-03 17:37:40 UTC], ["updated_at", 2016-09-03 17:37:40 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7232867470950438660)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (6.4ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'posts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (138.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "infinite-scroll_development"[0m
+  [1m[35m (126.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "infinite-scroll_test"[0m
+  [1m[35m (11.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7232867470950438660);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePosts (20160903173617)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "posts" ("id" serial primary key, "title" text, "body" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20160903173617"]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-09-03 17:39:19 UTC], ["updated_at", 2016-09-03 17:39:19 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7232867470950438660)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'posts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "post 1"], ["body", "hey there everyone this is a post"], ["created_at", 2016-09-03 17:40:03 UTC], ["updated_at", 2016-09-03 17:40:03 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" ORDER BY "posts"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35mSQL (2.5ms)[0m  [1m[31mDELETE FROM "posts" WHERE "posts"."id" = $1[0m  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Graveler"], ["body", "Whatever health kickstarter ennui fanny pack brooklyn."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Arcanine"], ["body", "Try-hard stumptown literally tumblr austin umami cardigan ennui tattooed."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Dragonair"], ["body", "Lo-fi lomo pbr&b 3 wolf moon kombucha tote bag irony pinterest."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Abra"], ["body", "Hashtag occupy godard cornhole green juice gluten-free hoodie."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Tangela"], ["body", "Craft beer wolf venmo shabby chic pbr&b occupy blog poutine."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Pidgeotto"], ["body", "Carry williamsburg wayfarers craft beer."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Marowak"], ["body", "Chambray iphone ugh post-ironic brooklyn."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Parasect"], ["body", "Mixtape pork belly etsy heirloom bitters."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Eevee"], ["body", "Street trust fund fanny pack marfa shoreditch letterpress semiotics knausgaard."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Doduo"], ["body", "8-bit church-key franzen hammock."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Clefairy"], ["body", "Bushwick cardigan meggings messenger bag raw denim."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Voltorb"], ["body", "You probably haven't heard of them health disrupt helvetica carry loko church-key mlkshk."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Oddish"], ["body", "Hashtag flexitarian yr put a bird on it street meh selfies."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Magnemite"], ["body", "Skateboard godard single-origin coffee disrupt portland pitchfork sustainable."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Bellsprout"], ["body", "Ramps kale chips yolo disrupt pop-up."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Voltorb"], ["body", "Plaid mixtape cray dreamcatcher retro ugh."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Abra"], ["body", "Mlkshk tofu helvetica kale chips yr 90's etsy."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Diglett"], ["body", "Viral marfa crucifix williamsburg authentic chicharrones."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Scyther"], ["body", "Kale chips wes anderson pug fingerstache single-origin coffee waistcoat flexitarian."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Jolteon"], ["body", "Skateboard swag echo chambray godard gastropub poutine."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Exeggutor"], ["body", "Meggings authentic semiotics twee."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Venomoth"], ["body", "Occupy health irony portland tacos viral yr drinking ennui."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Gyarados"], ["body", "Pug forage tattooed stumptown before they sold out."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Staryu"], ["body", "Sartorial cold-pressed letterpress chia."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Parasect"], ["body", "Tacos cardigan you probably haven't heard of them fashion axe williamsburg hashtag blog lomo authentic."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Lapras"], ["body", "Roof gluten-free venmo portland fanny pack plaid."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Mewtwo"], ["body", "Etsy gentrify park loko cliche kogi locavore readymade literally."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Sandshrew"], ["body", "Lomo pinterest polaroid wes anderson kogi taxidermy."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Machamp"], ["body", "Sriracha pbr&b pour-over blue bottle."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Lapras"], ["body", "Tattooed fanny pack seitan put a bird on it deep v."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Nidoran"], ["body", "Etsy cliche leggings deep v."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Lickitung"], ["body", "Thundercats put a bird on it plaid carry tacos hoodie microdosing cardigan."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Pikachu"], ["body", "Gastropub knausgaard carry godard xoxo mixtape goth."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Magikarp"], ["body", "Bicycle rights knausgaard kitsch master brooklyn artisan vhs celiac."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Dewgong"], ["body", "Meditation wayfarers readymade raw denim fanny pack franzen tousled."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Nidoking"], ["body", "Meditation bushwick messenger bag occupy schlitz fixie 3 wolf moon gastropub mixtape."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Rhyhorn"], ["body", "Keffiyeh asymmetrical fingerstache next level stumptown typewriter bushwick master."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Magmar"], ["body", "Tilde artisan retro migas taxidermy."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Kabutops"], ["body", "Etsy synth fingerstache xoxo meggings."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Snorlax"], ["body", "Brunch gastropub celiac kitsch echo."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Graveler"], ["body", "Cronut bushwick ethical plaid meh ennui austin goth."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Kabutops"], ["body", "Master chambray fanny pack cleanse."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Rapidash"], ["body", "Venmo authentic selvage park occupy ugh tilde meh hashtag."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Poliwrath"], ["body", "Knausgaard lomo viral bicycle rights art party tumblr brooklyn thundercats bushwick."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Rapidash"], ["body", "Meggings cornhole actually goth park wes anderson twee five dollar toast hashtag."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Dragonite"], ["body", "Bushwick yr try-hard food truck goth scenester."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Magikarp"], ["body", "Beard kitsch meditation pabst food truck keffiyeh."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Slowpoke"], ["body", "Selfies banh mi vinegar pug dreamcatcher swag chambray crucifix."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Ekans"], ["body", "Kitsch marfa park migas art party drinking."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Nidorino"], ["body", "Artisan hella organic letterpress gastropub microdosing."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Dragonite"], ["body", "Yr flannel messenger bag normcore tattooed farm-to-table diy."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Exeggcute"], ["body", "Ugh forage green juice thundercats blue bottle trust fund schlitz everyday."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Mankey"], ["body", "Tofu photo booth kitsch banh mi."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Mr."], ["body", "+1 jean shorts blog selfies xoxo."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Magikarp"], ["body", "Synth stumptown godard lomo yuccie plaid."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Machoke"], ["body", "Scenester wolf sriracha godard austin."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Onix"], ["body", "Shoreditch freegan whatever blog drinking roof."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Spearow"], ["body", "Roof 90's franzen synth tumblr before they sold out umami venmo."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Weezing"], ["body", "Twee vinegar sartorial quinoa leggings goth truffaut kale chips portland."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Weepinbell"], ["body", "Yr fixie direct trade crucifix."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Hypno"], ["body", "Stumptown plaid kale chips 90's."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Exeggutor"], ["body", "Health irony shabby chic master pitchfork letterpress bespoke vice."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Seel"], ["body", "Portland pour-over pitchfork kogi ennui try-hard sartorial helvetica."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Caterpie"], ["body", "Leggings biodiesel cliche carry pitchfork."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Tentacruel"], ["body", "Kale chips lomo letterpress brunch blue bottle humblebrag gentrify chambray roof."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Lapras"], ["body", "Tattooed typewriter food truck deep v pinterest chia."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Diglett"], ["body", "+1 heirloom lomo tofu cardigan messenger bag."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Alakazam"], ["body", "Wes anderson kickstarter typewriter single-origin coffee."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Diglett"], ["body", "Quinoa vinyl truffaut 90's mumblecore artisan polaroid."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Magneton"], ["body", "Distillery seitan small batch fanny pack marfa scenester kinfolk."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Primeape"], ["body", "Franzen health viral kale chips vinegar."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Vaporeon"], ["body", "Church-key disrupt pickled gluten-free butcher everyday."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Scyther"], ["body", "Trust fund vinegar cray mlkshk venmo polaroid."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Ninetales"], ["body", "Franzen before they sold out ethical kogi hammock typewriter."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Caterpie"], ["body", "Cronut kogi tumblr williamsburg bushwick loko ethical offal."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Beedrill"], ["body", "Banjo iphone church-key wayfarers cliche."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Nidoran"], ["body", "Ennui gluten-free 90's venmo mixtape vinyl yuccie quinoa godard."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Victreebel"], ["body", "Asymmetrical yr heirloom bitters organic actually locavore kickstarter craft beer."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Gloom"], ["body", "Yolo chambray shabby chic marfa chartreuse park mixtape kinfolk tousled."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Ditto"], ["body", "Dreamcatcher hashtag bespoke jean shorts pug pour-over literally leggings."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Electrode"], ["body", "Fap austin knausgaard bespoke."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Paras"], ["body", "Mixtape distillery hella yr chillwave."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Farfetch'd"], ["body", "Occupy meh migas lumbersexual cray kickstarter."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Alakazam"], ["body", "Tattooed pork belly distillery williamsburg pour-over art party 90's single-origin coffee."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Poliwag"], ["body", "Schlitz heirloom twee gentrify pork belly."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Lickitung"], ["body", "Hammock scenester ugh blog meditation roof taxidermy lumbersexual sartorial."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Vaporeon"], ["body", "Sriracha kogi street park beard tilde cornhole mustache."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Exeggcute"], ["body", "Cold-pressed poutine keytar semiotics authentic."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Magneton"], ["body", "Jean shorts hoodie yr twee godard five dollar toast."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Mankey"], ["body", "Kombucha butcher fingerstache thundercats hella ugh raw denim."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Sandshrew"], ["body", "Iphone 3 wolf moon fap humblebrag post-ironic before they sold out aesthetic."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Sandslash"], ["body", "Diy pour-over cliche ramps narwhal park tofu kinfolk."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Weepinbell"], ["body", "Flexitarian bushwick banjo mumblecore paleo."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Poliwrath"], ["body", "Venmo +1 dreamcatcher swag portland fixie shabby chic yuccie truffaut."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Lickitung"], ["body", "Biodiesel schlitz kogi blog ethical migas forage."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Zapdos"], ["body", "Gluten-free retro williamsburg crucifix asymmetrical fingerstache beard xoxo."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Clefairy"], ["body", "Scenester polaroid you probably haven't heard of them mlkshk."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Starmie"], ["body", "Keffiyeh quinoa shoreditch literally actually forage vinegar tousled."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Bulbasaur"], ["body", "Ethical marfa meggings kogi everyday."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Tentacruel"], ["body", "Ethical try-hard bespoke pop-up."], ["created_at", 2016-09-03 17:50:42 UTC], ["updated_at", 2016-09-03 17:50:42 UTC]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+Started GET "/" for ::1 at 2016-09-03 13:56:23 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb (8.2ms)
+Completed 200 OK in 47ms (Views: 28.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 13:56:23 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb (3.3ms)
+Completed 200 OK in 8ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 13:56:48 -0400
+  
+ArgumentError (Missing :controller key on routes definition, please check your routes.):
+  
+config/routes.rb:2:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.6ms)
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (104.9ms)
+Started GET "/" for ::1 at 2016-09-03 13:56:57 -0400
+Processing by PostController#index as HTML
+  Rendering post/index.html.erb within layouts/application
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  Rendered post/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 1314ms (Views: 1306.2ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 13:57:55 -0400
+Processing by PostController#index as HTML
+  Rendering post/index.html.erb within layouts/application
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  Rendered post/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 36ms (Views: 31.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 13:58:10 -0400
+Processing by PostController#index as HTML
+  Rendering post/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  Rendered post/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 32ms (Views: 29.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 13:59:16 -0400
+  
+ActionController::RoutingError (uninitialized constant PostsController):
+  
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:268:in `const_get'
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:268:in `block in constantize'
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:266:in `each'
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:266:in `inject'
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:266:in `constantize'
+actionpack (5.0.0.1) lib/action_dispatch/http/request.rb:93:in `controller_class'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:30:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `call'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered collection of /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (15.1ms)
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (25.3ms)
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (161.2ms)
+Started GET "/" for ::1 at 2016-09-03 13:59:26 -0400
+Processing by PostsController#index as HTML
+Completed 406 Not Acceptable in 46ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::UnknownFormat (PostsController#index is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not… nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.0.0.1) lib/action_controller/metal/implicit_render.rb:56:in `default_render'
+actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+actionpack (5.0.0.1) lib/abstract_controller/base.rb:188:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:126:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:126:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:455:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:455:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `call'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.5ms)
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.4ms)
+  Rendering /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/welamin/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (85.6ms)
+Started GET "/" for ::1 at 2016-09-03 13:59:58 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 45ms (Views: 39.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:10:23 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered posts/index.html.erb within layouts/application (35.5ms)
+Completed 200 OK in 142ms (Views: 119.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:11:49 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (1.9ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered posts/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 77ms (Views: 69.5ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:12:02 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered posts/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 30ms (Views: 27.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:12:09 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered posts/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 26ms (Views: 23.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:12:16 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered posts/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 28ms (Views: 25.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:12:48 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (1.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.0ms)
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 34ms (Views: 29.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:13:00 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 30ms (Views: 27.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:46:51 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.8ms)
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 149ms (Views: 143.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/?page=2&_=1472928411933" for ::1 at 2016-09-03 14:46:56 -0400
+Processing by PostsController#index as JS
+  Parameters: {"page"=>"2", "_"=>"1472928411933"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (2.3ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (29.0ms)
+Completed 200 OK in 66ms (Views: 45.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928411934&page=3" for ::1 at 2016-09-03 14:46:59 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928411934", "page"=>"3"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 40]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.5ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (18.7ms)
+Completed 200 OK in 57ms (Views: 35.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/?_=1472928411935&page=4" for ::1 at 2016-09-03 14:47:01 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928411935", "page"=>"4"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 60]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (22.5ms)
+Completed 200 OK in 62ms (Views: 42.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/?_=1472928411936&page=5" for ::1 at 2016-09-03 14:47:02 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928411936", "page"=>"5"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 80]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.9ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (21.2ms)
+Completed 200 OK in 58ms (Views: 39.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:47:07 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (1.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 31ms (Views: 26.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/?page=2&_=1472928427501" for ::1 at 2016-09-03 14:47:07 -0400
+Processing by PostsController#index as JS
+  Parameters: {"page"=>"2", "_"=>"1472928427501"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.6ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (32.4ms)
+Completed 200 OK in 127ms (Views: 56.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-09-03 14:48:20 -0400
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.0ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 30ms (Views: 26.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?page=2&_=1472928500761" for ::1 at 2016-09-03 14:48:25 -0400
+Processing by PostsController#index as JS
+  Parameters: {"page"=>"2", "_"=>"1472928500761"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (21.1ms)
+Completed 200 OK in 62ms (Views: 40.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500762&page=3" for ::1 at 2016-09-03 14:48:29 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500762", "page"=>"3"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 40]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.6ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (19.7ms)
+Completed 200 OK in 60ms (Views: 39.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500763&page=4" for ::1 at 2016-09-03 14:48:32 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500763", "page"=>"4"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 60]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (20.3ms)
+Completed 200 OK in 57ms (Views: 38.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/?_=1472928500764&page=5" for ::1 at 2016-09-03 14:48:37 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500764", "page"=>"5"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 80]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (22.2ms)
+Completed 200 OK in 62ms (Views: 43.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500764&page=1" for ::1 at 2016-09-03 14:48:42 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500764", "page"=>"1"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.5ms)
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 52ms (Views: 45.7ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/?_=1472928500765&page=2" for ::1 at 2016-09-03 14:48:43 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500765", "page"=>"2"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (18.0ms)
+Completed 200 OK in 59ms (Views: 37.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500766&page=3" for ::1 at 2016-09-03 14:48:44 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500766", "page"=>"3"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 40]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (20.6ms)
+Completed 200 OK in 56ms (Views: 37.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/?_=1472928500767&page=4" for ::1 at 2016-09-03 14:48:45 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500767", "page"=>"4"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 60]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (19.4ms)
+Completed 200 OK in 53ms (Views: 37.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500768&page=5" for ::1 at 2016-09-03 14:48:45 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500768", "page"=>"5"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 80]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (19.7ms)
+Completed 200 OK in 53ms (Views: 36.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500768&page=3" for ::1 at 2016-09-03 14:48:48 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500768", "page"=>"3"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 40]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.6ms)
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 48ms (Views: 43.6ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/?_=1472928500769&page=4" for ::1 at 2016-09-03 14:48:53 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500769", "page"=>"4"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 60]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (19.4ms)
+Completed 200 OK in 59ms (Views: 39.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=5" for ::1 at 2016-09-03 14:48:54 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500770", "page"=>"5"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 80]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.1ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (18.8ms)
+Completed 200 OK in 57ms (Views: 38.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-03 14:48:57 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.7ms)
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 52ms (Views: 46.8ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/?_=1472928500771&page=3" for ::1 at 2016-09-03 14:48:59 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500771", "page"=>"3"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 40]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.6ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (17.6ms)
+Completed 200 OK in 57ms (Views: 38.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500772&page=4" for ::1 at 2016-09-03 14:49:01 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500772", "page"=>"4"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 60]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (18.7ms)
+Completed 200 OK in 54ms (Views: 35.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500773&page=5" for ::1 at 2016-09-03 14:49:01 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472928500773", "page"=>"5"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 80]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (17.6ms)
+Completed 200 OK in 51ms (Views: 35.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-03 14:57:04 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 26ms (Views: 23.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-03 14:57:56 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 120ms (Views: 117.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-03 14:58:53 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.4ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 46ms (Views: 42.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-03 14:59:01 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 59ms (Views: 56.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472929141398&page=3" for ::1 at 2016-09-03 14:59:05 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472929141398", "page"=>"3"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 40]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.2ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (25.3ms)
+Completed 200 OK in 64ms (Views: 43.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/?_=1472929141399&page=4" for ::1 at 2016-09-03 14:59:06 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472929141399", "page"=>"4"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 60]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (21.2ms)
+Completed 200 OK in 64ms (Views: 43.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472929141400&page=5" for ::1 at 2016-09-03 14:59:08 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1472929141400", "page"=>"5"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 80]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (22.2ms)
+Completed 200 OK in 60ms (Views: 39.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-03 14:59:48 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 32ms (Views: 29.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-03 15:00:26 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 44ms (Views: 40.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:43:18 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.1ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 101ms (Views: 95.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:48:28 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.1ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 35ms (Views: 31.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:48:31 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 116ms (Views: 112.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:48:31 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.3ms)
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 51ms (Views: 47.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:48:32 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 57ms (Views: 53.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:48:34 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.7ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 29ms (Views: 25.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:49:00 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.3ms)
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 53ms (Views: 47.6ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:49:25 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.2ms)
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (11.8ms)
+Completed 200 OK in 64ms (Views: 58.8ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:49:26 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.5ms)
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 60ms (Views: 54.3ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:49:27 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.7ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 139ms (Views: 135.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:52:30 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 29ms (Views: 26.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:53:27 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 46ms (Views: 43.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:53:53 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.0ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 33ms (Views: 29.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:54:08 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 34ms (Views: 31.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:54:21 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 38ms (Views: 34.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:55:58 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.4ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 34ms (Views: 31.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:56:53 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 37ms (Views: 32.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:57:35 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 31ms (Views: 28.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:59:36 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 30ms (Views: 26.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 14:59:40 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.0ms)
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 105ms (Views: 101.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:04:35 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 82ms (Views: 76.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:06:07 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 35ms (Views: 32.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:06:22 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 27ms (Views: 23.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:06:48 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.6ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 68ms (Views: 65.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1473016009325&page=3" for ::1 at 2016-09-04 15:06:53 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1473016009325", "page"=>"3"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 40]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.1ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (19.0ms)
+Completed 200 OK in 53ms (Views: 34.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1473016009326&page=4" for ::1 at 2016-09-04 15:06:55 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1473016009326", "page"=>"4"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 60]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.2ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (19.1ms)
+Completed 200 OK in 54ms (Views: 38.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/?_=1473016009327&page=5" for ::1 at 2016-09-04 15:06:56 -0400
+Processing by PostsController#index as JS
+  Parameters: {"_"=>"1473016009327", "page"=>"5"}
+  Rendering posts/index.js.erb
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 80]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.js.erb (20.3ms)
+Completed 200 OK in 58ms (Views: 41.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:07:00 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.5ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 30ms (Views: 27.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:08:55 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.5ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 132ms (Views: 126.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:09:12 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.8ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 44ms (Views: 40.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:10:07 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 44ms (Views: 41.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:10:13 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (2.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 46ms (Views: 43.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:10:36 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.1ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 31ms (Views: 28.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:11:17 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.4ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 30ms (Views: 27.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:12:11 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.7ms)
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 62ms (Views: 58.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:12:12 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (1.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (0.9ms)
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (13.8ms)
+Completed 200 OK in 81ms (Views: 74.1ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/?_=1472928500770&page=2" for ::1 at 2016-09-04 15:12:13 -0400
+Processing by PostsController#index as HTML
+  Parameters: {"_"=>"1472928500770", "page"=>"2"}
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 20], ["OFFSET", 20]]
+  Rendered collection of posts/_post.html.erb [20 times] (1.6ms)
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 57ms (Views: 52.2ms | ActiveRecord: 2.0ms)
+
+

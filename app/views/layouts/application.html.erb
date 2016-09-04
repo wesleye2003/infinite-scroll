@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>InfiniteScroll</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<div class="btn-group btn-group-justified">
+  		<a href="#" class="btn btn-primary">Home</a>
+  		<a href="#" class="btn btn-primary">Notifications</a>
+  		<a href="#" class="btn btn-primary">Settings</a>
+		</div>
+
+    <%= yield %>
+  </body>
+</html>
