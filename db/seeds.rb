@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 (1..100).each do |i|
-  Post.create!(title: Faker::Pokemon.name, body: Faker::Hipster.sentence)
+  Post.create!(title: Faker::Pokemon.name, body: Faker::Hipster.sentence, image_url: Faker::Avatar.image)
 end
